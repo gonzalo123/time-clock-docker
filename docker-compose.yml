@@ -1,0 +1,50 @@
+version: '2'
+
+services:
+  web:
+    image: gonzalo123/example_web
+    container_name: example_web
+    ports:
+     - "80:80"
+    restart: always
+    depends_on:
+      - node
+    build:
+      context: ./images/php
+      dockerfile: Dockerfile
+    entrypoint:
+      - /usr/sbin/apache2
+      - -D
+      - FOREGROUND
+    volumes:
+     - ./src:/mnt/src
+
+  node:
+    image: gonzalo123/example_node
+    container_name: example_node
+    ports:
+     - "8080:8080"
+    restart: always
+    build:
+      context: ./images/node
+      dockerfile: Dockerfile
+    entrypoint:
+      - npm
+      - start
+    volumes:
+     - ./src:/mnt/src
+
+  python:
+      image: gonzalo123/example_python
+      container_name: example_python
+      restart: always
+      depends_on:
+        - node
+      build:
+        context: ./images/python
+        dockerfile: Dockerfile
+      entrypoint:
+        - python
+        - tic.py
+      volumes:
+       - ./src:/mnt/src
