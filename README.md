@@ -1,5 +1,7 @@
-Time Clock. One Docker experiment
+Time Clock.
 ======
+
+A Docker experiment
 
 ### Install php vendors
 ```
