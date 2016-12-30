@@ -25,3 +25,11 @@ docker-compose up --build -d
 ```
 
 Open web browser at: http://localhost
+
+## Execute one script within existing image. 
+
+Create container execute command and destroy container
+ 
+```
+docker run -it -v /Users/gonzalo/work/experiments/docker.example/src:/mnt/src --rm gonzalo123/example_python python /mnt/src/python/hello.py
+```
